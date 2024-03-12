@@ -125,14 +125,14 @@ void loop() {
     //only display
   }
 
-  
-
-  display2(5,i);
-  i++;
-  if (i>3) i=0;
-  delay(150);
-
+  for(int n = 1; n < 10 ; n++) {
+    for(int j = 0 ; j < 8 ; j++) {
+      display2(n,i);
+      i++;
+      if (i>3) i=0;
+      delay(150);
+    }
+  }
 
   //Serial.print(digitalRead(d7));
-  delay(1);
 }
