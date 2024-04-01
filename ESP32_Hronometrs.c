@@ -1,19 +1,17 @@
-
 enum pinConfig  {
-  button1 = 34,
-  button2 = 35,
-  a7 = 0,
-  b7 = 4,
-  c7 = 16,
-  d7 = 17,
-  e7 = 5,
-  f7 = 18,
+  button1 = 16,
+  button2 = 17,
+  a7 = 26,
+  b7 = 15,
+  c7 = 21,
+  d7 = 22,
+  e7 = 23,
+  f7 = 27,
   g7 = 19,
-  dig1 = 12,
+  dig4 = 18,
+  dig3 = 13,
   dig2 = 14,
-  dig3 = 27,
-  dig4 = 26,
-  clean = 2,
+  dig1 = 25,
 };
 
 bool isPressed(int button)
@@ -90,7 +88,13 @@ void position(int which_position) {
   }
 }
 
+void clear()
+  {
+    setDisplay(1,1,1,1,1,1,1);
+  }
+
 void display2(int number, int which_position) {
+  clear();
   position(which_position);
   display(number);
 }
@@ -110,29 +114,40 @@ void setup() {
   pinMode(dig2,OUTPUT);
   pinMode(dig3,OUTPUT);
   pinMode(dig4,OUTPUT);
-  pinMode(clean,OUTPUT);
 }
 
 void loop() {
-  static int i = 0;
-  
-  if (isPressed(button1))
+  static int num0 = 0;
+  static int num1 = 0;
+  static int num2 = 0;
+  static int num3 = 0;
+  unsigned long wait_interval = 1000;
+  unsigned long start_millis = millis();
+  while(millis()<(start_millis + wait_interval))
   {
-    //start timer and display
+    display2(num0,0);
+    display2(num1,1);
+    display2(num2,2);
+    display2(num3,3);
   }
-  if (isPressed(button2))
+  num0++;
+  if(num0>9)
   {
-    //only display
+    num0 = 0;
+    num1++;
   }
-
-  for(int n = 1; n < 10 ; n++) {
-    for(int j = 0 ; j < 8 ; j++) {
-      display2(n,i);
-      i++;
-      if (i>3) i=0;
-      delay(150);
-    }
+  if(num1>5)
+  {
+    num1 = 0;
+    num2++;
   }
-
-  //Serial.print(digitalRead(d7));
+  if (num2>9)
+  {
+    num2 = 0;
+    num3++;
+  }
+  if(num3>5);
+  {
+    num3 = 0;
+  }
 }
