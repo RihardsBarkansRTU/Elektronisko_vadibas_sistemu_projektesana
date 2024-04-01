@@ -1,6 +1,6 @@
 enum pinConfig  {
-  button1 = 16,
-  button2 = 17,
+  button1 = 34,
+  button2 = 35,
   a7 = 26,
   b7 = 15,
   c7 = 21,
@@ -121,6 +121,24 @@ void loop() {
   static int num1 = 0;
   static int num2 = 0;
   static int num3 = 0;
+  static int mode = 0;
+
+  while((mode == 0)&&(digitalRead(button1)))
+  {
+    display2(num0,0);
+    display2(num1,1);
+    display2(num2,2);
+    display2(num3,3);
+    if (!digitalRead(button1))
+    {
+      mode = 1;
+      num0 = 0;
+      num1 = 0;
+      num2 = 0;
+      num3 = 0;
+    }
+  }  
+
   unsigned long wait_interval = 1000;
   unsigned long start_millis = millis();
   while(millis()<(start_millis + wait_interval))
@@ -129,25 +147,32 @@ void loop() {
     display2(num1,1);
     display2(num2,2);
     display2(num3,3);
+    if (!digitalRead(button2))
+    {
+      mode = 0;
+    }
   }
-  num0++;
-  if(num0>9)
+  if (mode == 1)
   {
-    num0 = 0;
-    num1++;
-  }
-  if(num1>5)
-  {
-    num1 = 0;
-    num2++;
-  }
-  if (num2>9)
-  {
-    num2 = 0;
-    num3++;
-  }
-  if(num3>5);
-  {
-    num3 = 0;
+    num0++;
+    if(num0>9)
+    {
+      num0 = 0;
+      num1++;
+    }
+    if(num1>5)
+    {
+      num1 = 0;
+      num2++;
+    }
+    if (num2>9)
+    {
+      num2 = 0;
+      num3++;
+    }
+    if(num3>5);
+    {
+      num3 = 0;
+    }
   }
 }
