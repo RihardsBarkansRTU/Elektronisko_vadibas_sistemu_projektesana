@@ -45,7 +45,7 @@ void loop()
   //Serial.println(value);
   My_LCD.print("Spriegums: ");
   My_LCD.setCursor(0, 1);
-  My_LCD.print(value*1.182/1000);
+  My_LCD.print(value*1.135/1000);
   My_LCD.print(" V");
   My_LCD.setCursor(0, 0);
   
