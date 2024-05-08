@@ -50,6 +50,7 @@ void setup() {
   pinMode(led_pin_red, OUTPUT);
   pinMode(led_pin_yellow, OUTPUT);
   pinMode(led_pin_green, OUTPUT);
+  pinMode(button_pin, INPUT);
 }
 
 void loop() {
